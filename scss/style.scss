@@ -1,0 +1,566 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+$fontFamily: 'Open Sans', sans-serif;
+$fontSize: 16px;
+$transition: .4s ease;
+$primary: #3177b5;
+$secondary: #33a5d7;
+$tertiary: #080033;
+$black: #000;
+$white: #fff;
+$lightGray: #a0a0a0;
+$gray: #eaeaea;
+$padding: 100px 0;
+/**************************
+mixins
+**************************/
+@mixin flex($justify, $align, $direction: row) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+@mixin bgImg($height) {
+    height: $height;
+    background-position: center;
+    background-size: cover;
+}
+@mixin btn {
+    padding: 10px 40px;
+    background: transparent;
+    border: 2px solid $white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    margin-top: 30px;
+    cursor: pointer;
+    color: $white;
+    transition: $transition;
+    &:hover {
+        background: $white;
+        color: $primary;
+    }
+}
+@mixin underline($color, $width) {
+    background: $color;
+    width: $width;
+    display: block;
+    height: 2px;
+    content: "";
+    margin: 0 0 20px;
+}
+/**************************
+basic styles
+**************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    line-height: 1.5;
+}
+a {
+    text-decoration: none;
+    &:hover {
+        transition: $transition;
+    }
+}
+ul {
+    list-style: none;
+}
+.container {
+    width: 80%;
+    margin: auto;
+}
+h1 {
+    text-transform: uppercase;
+    font-size: 3.5rem;
+    font-weight: 600;
+    text-shadow: 0 0 2px $tertiary;
+}
+.borderHeadings {
+    border: 2px solid $white;
+    padding: 70px;
+    color: $white;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 400;
+    span {
+        font-weight: 700;
+        }
+}
+.formInput {
+    border: 2px solid $primary;
+    padding: 10px;
+    font-size: .8rem;
+    margin-bottom: 20px;
+}
+/**************************
+top bar
+**************************/
+.topBar {
+    @include flex(space-between, center);
+    padding: 10px 0;
+    font-size: 1.7rem;
+    .logo {
+        color: $primary;
+        span {
+            color: $secondary;
+            font-weight: 800;
+            font-style: italic;
+        }
+        &:hover {
+            opacity: .8;
+        }
+    }
+    ul {
+        @include flex(space-between, center);
+        a {
+            background: $primary;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            display: inline-block;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            margin-left: 40px;
+            padding-top: 5px;
+            color: white;
+            &:hover {
+                box-shadow: 0 0 10px $lightGray;
+                background: $secondary;
+            }
+        }
+    }
+}
+/**************************
+mainHeader
+**************************/
+.mainHeader {
+    background-image: linear-gradient(rgba($primary, .7), rgba($primary, .7)), url(../img/header.jpg);
+    @include bgImg(90vh);
+    nav {
+        padding-top: 20px;
+        ul {
+            @include flex(flex-end, center);
+            a {
+                color: $white;
+                font-size: 1.3rem;
+                margin-left: 40px;
+            }
+        }
+    }
+    hgroup {
+        @include flex(center, center, column);
+        height: 70vh;
+        text-align: center;
+        width: 60%;
+        margin: auto;
+        color: $white;
+        p {
+            font-size: 1.1rem;
+        }
+        button {
+            @include btn;
+        }
+    }
+}
+/**************************
+services
+**************************/
+.services {
+    @include flex(space-between, center);
+    margin-top: -100px;
+    article {
+        flex: 0 0 25%;
+        color: $white;
+        padding: 50px;
+        text-align: center;
+        i {
+            font-size: 3.5rem;
+        }
+        h3 {
+            font-size: 1.8rem;
+            margin: 20px 0;
+        }
+        button {
+            @include btn;
+            font-size: .8rem;
+        }
+        &:nth-child(odd) {
+            background: $primary;
+        }
+        &:nth-child(even) {
+            background: $secondary;
+        }
+    }
+}
+/**************************
+about
+**************************/
+.about {
+    @include flex(center, center);
+    article {
+        &:first-child {
+            flex: 0 0 50%;
+            background: $gray;
+            padding-left: 10%;
+            padding-right: 5%;
+            height: 50vh;
+            @include flex(center, flex-start, column);
+            color: $primary;
+            h2 {
+                font-size: 2rem;
+                &::after {
+                    @include underline($primary, 50px);
+                }
+            }
+            a {
+                color: $primary;
+                margin-top: 20px;
+                &:hover {
+                    color: $secondary;
+                }
+            }
+        }
+        &:last-child {
+            flex: 0 0 50%;
+            background-image: linear-gradient(rgba($tertiary, .7),rgba($tertiary, .7)), url(../img/about.jpg);
+            @include bgImg(50vh);
+            padding-right: 10%;
+            @include flex(flex-end, center);
+            h2 {
+               @extend .borderHeadings; 
+            }
+        }
+    }
+}
+/**************************
+team
+**************************/
+.team {
+    background-image: linear-gradient(rgba($black, .7),rgba($black, .7)), 
+    url(../img/team.jpg);
+    @include bgImg(auto);
+    color: $white;
+    text-align: center;
+    padding: 100px 0 200px 0;
+    h2 {
+        font-size: 2.5rem;
+        &::after {
+            @include underline($white, 50px);
+            margin: 0 auto 30px auto;
+        }
+    }
+    p {
+        width: 50%;
+        margin: auto;
+    }
+}
+/**************************
+peoples
+**************************/
+.peoples {
+    background: $white;
+    text-align: center;
+    color: $white;
+    .container {
+        @include flex(center, center);
+        padding-bottom: 100px;
+        article {
+            flex: 0 0 25%;
+            margin-top: -100px;
+            background: $primary;
+            img {
+                width: 100%;
+            }
+            .text {
+                padding: 40px;
+                h3 {
+                    font-size: 1.5rem;
+                    &::after {
+                        @include underline($white, 150px);
+                        margin: 20px auto;
+                    }
+                }
+                button {
+                    @include btn;
+                    background: $secondary;
+                    width: 100%;
+                    border: none;
+                }
+            }
+            &:nth-child(even) {
+                background: $secondary;
+                button {
+                    background: $primary;
+                }
+            }
+        }
+    }
+}
+/**************************
+consultation
+**************************/
+.consultation {
+    @include flex(center, center);
+    background: $gray;
+    article:first-child {
+        flex: 0 0 50%;
+        padding-left: 10%;
+        background-image: linear-gradient(rgba($tertiary,.7), rgba($tertiary,.7)), url(../img/about2.jpg);
+        @include bgImg(60vh);
+        @include flex(flex-start, center);
+        h2 {
+            @extend .borderHeadings;
+            text-align: left;
+        }
+    }
+    article:last-child {
+        flex: 0 0 50%;
+        padding-right: 10%;
+        @include flex(flex-end, center);
+        form {
+            width: 70%;
+            @include flex(space-between, center);
+            input {
+                border: 2px solid $primary;
+                padding: 10px;
+                font-size: .8rem;
+                margin-bottom: 10px;
+                &[type="text"] {
+                    flex: 0 0 48%;
+                }
+                &[type="email"] {
+                    flex: 0 0 100%;
+                }
+            }
+            textarea {
+                border: 2px solid $primary;
+                padding: 10px;
+                font-size: 1rem;
+                flex: 0 0 100%;
+            }
+            button {
+                @include btn;
+                background: $primary;
+                flex: 0 0 100%;
+                border: 2px solid $primary;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+/**************************
+testimonials
+**************************/
+.testimonials {
+    background: $tertiary;
+    color: $white;
+    padding: $padding;
+    text-align: center;
+    h2 {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+    }
+    article {
+        width: 50%;
+        margin: auto;
+        p {
+            padding: 30px 0;
+        }
+        h3 {
+            margin-bottom: 30px;
+        }
+    }
+}
+/**************************
+types
+**************************/
+.types {
+    background: $primary;
+    h2 {
+        color: $white;
+        font-size: 2rem;
+        padding: 100px 0 50px 0;
+        text-align: center;
+    }
+    p {
+        text-align: center;
+        padding-bottom: 40px;
+    }
+    .choices {  
+        @include flex(space-between, center, row); 
+        padding-bottom: 100px;
+        div {
+            flex: 0 0 24%;
+            background: $white;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            &:hover {
+                background: $tertiary;
+                transition: $transition;
+                p {
+                    color: $white;
+                }
+            }
+            h3 {
+                color: $primary;
+                font-size: 1.45rem;
+                font-weight: bold;
+                line-height: none;
+                opacity: .9;
+                &::after {
+                    @include underline($primary, 50px);
+                    margin: 0 auto 30px auto;
+                }
+            }
+            p {
+                color: $black;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+/**************************
+blogHeader
+**************************/
+.blogHeader {
+    background-image: linear-gradient(rgba($primary, .7), rgba($primary, .7)), url(../img/about.jpg);
+    @include bgImg(40vh);
+    width: 100%;
+    nav {
+        padding-top: 20px;
+        ul {
+            @include flex(flex-end, center);
+            a {
+                color: $white;
+                font-size: 1.3rem;
+                margin-left: 40px;
+            }
+        }
+    }
+    h1 {
+        color: $white;
+        text-align: center;
+        padding-top: 70px;
+    }
+}
+/**************************
+blog
+**************************/
+.blog {
+    background: $gray;
+    padding: $padding;
+    @include flex(space-between, center);
+    .prvi { 
+            flex: 0 0 69%;
+            overflow: hidden;
+            padding-left: 10%;
+             .blogItem {
+                @include flex(flex-start, center);
+                div:first-child {
+                    flex: 0 0 40%;
+                    background-image: url(../img/about2.jpg);
+                    @include bgImg(50vh);
+                }
+                div:last-child {
+                    flex: 0 0 60%;
+                    height: 50vh;
+                    @include flex(flex-start, center, column);
+                    background: $white;
+                    text-align: center;
+                    h3 {
+                        font-size: 1.5rem;
+                        background: $primary;
+                        width: 100%;
+                        color: white;
+                        margin-bottom: 20px;
+                    }
+                    p {
+                        font-size: 1rem;
+                        color: black;
+                        padding: 30px;
+                        margin-bottom: 20px;
+                    }
+                    button {
+                        @include btn;
+                        margin-bottom: 20px;
+                        background: $primary;
+                        color: $white;
+                        border: 1px solid $primary;
+                        text-transform: none;
+                        &:hover {
+                            background: $white;
+                            color: $primary;
+                            transition: $transition;
+                        }
+                    }
+                } 
+            } 
+    }
+    .drugi {
+            flex: 0 0 29%;
+            @include flex(center, center);
+            padding-right: 10%;
+            article {
+                background: $primary;
+                padding: 100px;
+                height: 50vh;
+                margin-bottom: 35px;
+                ul { 
+                    color: $white;
+                    h3 {
+                        text-decoration: underline;
+                        padding-bottom: 20px;
+                    }
+                    li {
+                        text-align: center;
+                        padding-bottom: 10px;
+                    }
+                }
+            }
+            // margin-right: 10%;
+    }
+}
+/**************************
+contact
+**************************/
+.contact {
+    padding: $padding;
+    @include flex(space-between, center);
+    article {
+        flex: 1;
+        h3 {
+            color: $primary;
+            font-size: 2rem;
+            &::after {
+                @include underline($primary, 50px);
+            }
+        }
+        p {
+            color: $secondary;
+        }
+    }
+}
+/**************************
+map
+**************************/
+.map {
+    iframe {
+        display: block;
+    }
+}
+/**************************
+footer
+**************************/
+footer {
+    background: $primary;
+    text-align: center;
+    color: $white;
+    padding: 20px;
+}
