@@ -802,7 +802,11 @@ contact
   height: 2px;
   content: "";
   margin: 0 0 20px;
-  margin: 0 auto 30px auto;
+}
+@media (max-width: 767px) {
+  .contact article h3::after {
+    margin: 0 auto 30px auto;
+  }
 }
 .contact article p {
   color: #33a5d7;

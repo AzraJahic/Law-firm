@@ -582,7 +582,9 @@ contact
             font-size: 2rem;
             &::after {
                 @include underline($primary, 50px);
-                margin: 0 auto 30px auto;
+                @media (max-width: 767px) {
+                    margin: 0 auto 30px auto;
+                }
             }
         }
         p {
