@@ -96,6 +96,10 @@ h1 {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 400;
+    @media (max-width: 767px) {
+        padding: 30px;
+        margin: 20px auto;
+    }
     span {
         font-weight: 700;
         }
