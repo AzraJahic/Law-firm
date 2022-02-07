@@ -241,7 +241,7 @@ services
 }
 @media (max-width: 767px) {
   .services {
-    margin-top: -10px;
+    margin-top: 0px;
   }
 }
 .services article {
@@ -411,7 +411,7 @@ peoples
 @media (max-width: 767px) {
   .peoples .container article {
     flex: 0 0 100%;
-    margin-top: -10px;
+    margin-top: 0px;
   }
 }
 .peoples .container article img {
